@@ -4,13 +4,14 @@ function minimumBribes(q) {
     if(q[0] == q.length){
         console.log('Too chaotic');
     }else{
-        for(let i = 0; i < q.length - 1; i++){
-            if(q[i + 1] < q[i]){
-                let aux = q[i];
-                q[i] = q[i + 1];
-                q[i + 1] = aux;
-                count++;
-                console.log(q)
+        for(let j = 0; j < Math.floor(q.length/2);j++){
+            for(let i = 0; i < q.length - 1; i++){
+                if(q[i + 1] < q[i]){
+                    let aux = q[i];
+                    q[i] = q[i + 1];
+                    q[i + 1] = aux;
+                    count++;
+                }
             }
         }
         if(q[q.length-1] - q[0] != q.length - 1){
@@ -20,4 +21,4 @@ function minimumBribes(q) {
         }
     }
 }
-minimumBribes([5, 1, 2, 3, 7, 8, 6, 4])
+minimumBribes([1, 2, 5, 3, 7, 8, 6, 4])
