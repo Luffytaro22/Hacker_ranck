@@ -6,11 +6,13 @@ function formingMagicSquare(s) {
     let result_columnas = [];
     let result_filas = [];
     let result_diagonal = [];
-    
+    let count = 0;
     do{
+    count = 0;
     for(let i = 0; i < s.length; i++){
         result_filas[i] = [];
         if(s[i][0] + s[i][1] + s[i][2] != 15){
+            count += 1;
             diferencia_filas = Math.abs(s[i][0] + s[i][1] + s[i][2] - 15);
             result_filas[i].push(diferencia_filas);
             if(s[i][0] + diferencia_filas <= 9){
@@ -27,6 +29,7 @@ function formingMagicSquare(s) {
     for(let i = 0; i < s.length; i++){
         result_columnas[i] = [];
         if(s[0][i] + s[1][i] + s[2][i] != 15){
+            count += 1;
             diferencia_columnas = Math.abs(s[0][i] + s[1][i] + s[2][i] - 15);
             result_columnas[i].push(diferencia_columnas);
             if(s[0][i] + diferencia_columnas <= 9){
@@ -42,6 +45,7 @@ function formingMagicSquare(s) {
     }
    
         if(s[0][0] + s[1][1] + s[2][2] != 15){
+            count += 1;
             diferencia_diagonal = Math.abs(s[0][0] + s[1][1] + s[2][2] - 15);
             result_diagonal.push(diferencia_diagonal);
             if(s[0][0] + diferencia_diagonal <= 9){
@@ -55,6 +59,7 @@ function formingMagicSquare(s) {
             }
         }
         if(s[2][0] + s[1][1] + s[0][2] != 15){
+            count += 1;
             diferencia_diagonal = Math.abs(s[2][0] + s[1][1] + s[0][2] - 15);
             result_diagonal.push(diferencia_diagonal);
             if(s[2][0] + diferencia_diagonal <= 9){
@@ -67,7 +72,7 @@ function formingMagicSquare(s) {
                 }
             }
         }
-    }while(s[0][0] + s[0][1] + s[0][2] != 15 || s[1][0] + s[1][1] + s[1][2] != 15 || s[2][0] + s[2][1] + s[2][2] != 15 || s[0][0] + s[1][0] + s[2][0] != 15 || s[0][1] + s[1][1] + s[2][1] != 15 || s[0][2] + s[1][2] + s[2][2] != 15 || s[0][0] + s[1][1] + s[2][2] != 15 || s[2][0] + s[1][1] + s[0][2] != 15)
+    }while(count > 0)
     console.log(s);
     console.log(result_filas)
     console.log(result_columnas)
