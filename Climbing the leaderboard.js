@@ -15,7 +15,8 @@ function climbingLeaderboard(ranked, player) {
             while(ranked[i] == ranked[i+aux]){
                 aux++;
             }
-            rankings = rankings.concat(count.toString().repeat(aux).split(''));
+            rankings.push(Array(aux).fill(count));
+            rankings = rankings.flat();
             i = i + aux - 1;
         }
         if(i == ranked.length - 1){
@@ -23,7 +24,7 @@ function climbingLeaderboard(ranked, player) {
             rankings.push(count);
         }
     }
-    rankings = rankings.map(x => Number(x));
+    console.log(rankings)
     for(let i = 0; i < player.length; i++){
         for(let j = 0; j < ranked.length; j++){
             if(player[i] >= ranked[j]){
