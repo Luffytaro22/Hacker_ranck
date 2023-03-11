@@ -1,48 +1,24 @@
 function climbingLeaderboard(ranked, player) {
     // Write your code here
-    let rankings = [];
-    let count = 0;
     let players_index = [];
-    let aux = 1;
-    for(let i = 0; i < ranked.length; i++){
-        if(ranked[i+1]<ranked[i]){
-            count += 1;
-            rankings.push(count);
-        }
-        if(ranked[i] == ranked[i+1]){
-            count += 1;
-            aux = 1
-            while(ranked[i] == ranked[i+aux]){
-                aux++;
-            }
-            rankings.push(Array(aux).fill(count));
-            rankings = rankings.flat();
-            i = i + aux - 1;
-        }
-        if(i == ranked.length - 1){
-            count += 1;
-            rankings.push(count);
-        }
-    }
-    console.log(rankings)
-    
-    let j = ranked.length-1;
+    let ranked_set = [...new Set([...ranked])];
+    let j = ranked_set.length-1;
     for(let i = 0; i < player.length; i++){
-        while(player[i] >= ranked[j] && j > 0){
+        console.log(j)
+        while(player[i] >= ranked_set[j] && j > 0){
             j--;
         }
         while(j >= 0){
-            if(player[i] < ranked[ranked.length-1]){
-                count += 1;
-                players_index.push(count);
+            if(player[i] < ranked_set[ranked_set.length-1]){
+                players_index.push(ranked_set.length+1);
                 break;
             }
-            if(player[i] >= ranked[j]){
-                players_index.push(rankings[j]);
+            if(player[i] >= ranked_set[j]){
+                players_index.push(j+1);
                 break;
             }
-            if(player[i] == ranked[j+1] || player[i] > ranked[j+1]){
-                players_index.push(rankings[j+1]);
+            if(player[i] == ranked_set[j+1] || player[i] > ranked_set[j+1]){
+                players_index.push(j+2);
                 break;
             }
         }    
@@ -51,4 +27,4 @@ function climbingLeaderboard(ranked, player) {
     console.log(players_index)
     return players_index;
 }
-climbingLeaderboard([1],[1,1])
+climbingLeaderboard([100, 90, 90, 80, 75, 60],[50, 65, 77, 90, 102])
