@@ -11,19 +11,19 @@ function climbingLeaderboard(ranked, player) {
         }
         if(ranked[i] == ranked[i+1]){
             count += 1;
+            aux = 1
             while(ranked[i] == ranked[i+aux]){
-                rankings.push(count);
                 aux++;
             }
-            i++;
+            rankings = rankings.concat(count.toString().repeat(aux).split(''));
+            i = i + aux - 1;
         }
         if(i == ranked.length - 1){
             count += 1;
             rankings.push(count);
         }
     }
-    console.log(rankings)
-    console.log(rankings[ranked.indexOf(ranked[0])])
+    rankings = rankings.map(x => Number(x));
     for(let i = 0; i < player.length; i++){
         for(let j = 0; j < ranked.length; j++){
             if(player[i] >= ranked[j]){
@@ -40,4 +40,4 @@ function climbingLeaderboard(ranked, player) {
     console.log(players_index)
     return players_index;
 }
-climbingLeaderboard([100, 100, 50, 40, 40, 40, 20, 10],[5, 25, 50, 120])
+climbingLeaderboard([100, 90, 90, 80, 75, 60],[50, 65, 77, 90, 102])
